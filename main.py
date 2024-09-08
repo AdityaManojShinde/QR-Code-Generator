@@ -1,7 +1,7 @@
 import qrcode
 from PIL import Image
 import tkinter as tk
-from tkinter import colorchooser, filedialog
+from tkinter import colorchooser, filedialog, messagebox
 from tkinter import ttk
 
 class QRCodeGenerator:
@@ -28,9 +28,9 @@ class QRCodeGenerator:
 class QRCodeApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Advanced QR Code Generator")
+        self.root.title("Python QR Code Generator")
         self.root.configure(bg="white")
-
+       
         # Set the window size
         self.root.geometry("600x400")
 
@@ -77,7 +77,7 @@ class QRCodeApp:
 
         ttk.Button(container, text="Choose QR Code Color", command=self.choose_fill_color).grid(row=4, column=0, pady=(0, 10), sticky="w")
         ttk.Button(container, text="Choose Background Color", command=self.choose_back_color).grid(row=4, column=1, pady=(0, 10), sticky="w")
-        ttk.Button(container, text="Generate QR Code", command=self.generate_qr).grid(row=5, column=0, columnspan=2, pady=(0, 20), sticky="w")
+        ttk.Button(container, text="Generate QR Code", command=self.on_generate_qr).grid(row=5, column=0, columnspan=2, pady=(0, 20), sticky="w")
 
     def choose_fill_color(self):
         self.fill_color = colorchooser.askcolor(title="Choose QR Code Color")[1]
@@ -85,8 +85,9 @@ class QRCodeApp:
     def choose_back_color(self):
         self.back_color = colorchooser.askcolor(title="Choose Background Color")[1]
 
-    def generate_qr(self):
+    def on_generate_qr(self):
         if not self.qr_data.get():
+            messagebox.showwarning("Input Error", "Please enter QR Code data.")
             return
 
         qr_generator = QRCodeGenerator(
@@ -107,7 +108,7 @@ class QRCodeApp:
 
         if file_path:
             qr_image.save(file_path)
-            tk.messagebox.showinfo("Success", f"QR Code saved to {file_path}")
+            messagebox.showinfo("Success", f"QR Code saved to {file_path}")
 
         self.qr_data.set("")
 
