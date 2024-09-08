@@ -1,8 +1,8 @@
 # Python QR Code Generator
-![QR Code 1](images/1.png) 
-![QR Code 2](images/2.png)
-![QR Code 3 ](images/4.png) 
-![QR Code 4](images/3.png)
+![QR Code 1](images/post/1.png) 
+![QR Code 2](images/post/2.png)
+![QR Code 3 ](images/post/4.png) 
+![QR Code 4](images/post/3.png)
 
 
 
