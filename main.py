@@ -1,7 +1,7 @@
 import qrcode
 from PIL import Image
 import tkinter as tk
-from tkinter import colorchooser
+from tkinter import colorchooser, filedialog
 from tkinter import ttk
 
 class QRCodeGenerator:
@@ -12,7 +12,7 @@ class QRCodeGenerator:
         self.border = border
         self.box_size = box_size
 
-    def generate_qr(self, output_path="qr_code.png"):
+    def generate_qr(self):
         qr = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_H,
@@ -23,7 +23,6 @@ class QRCodeGenerator:
         qr.make(fit=True)
 
         qr_image = qr.make_image(fill_color=self.fill_color, back_color=self.back_color).convert('RGBA')
-        qr_image.save(output_path)
         return qr_image
 
 class QRCodeApp:
@@ -99,7 +98,17 @@ class QRCodeApp:
         )
         qr_image = qr_generator.generate_qr()
 
-        qr_image.show()
+        # Open save dialog
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".png",
+            filetypes=[("PNG files", "*.png"), ("All files", "*.*")],
+            title="Save QR Code As"
+        )
+
+        if file_path:
+            qr_image.save(file_path)
+            tk.messagebox.showinfo("Success", f"QR Code saved to {file_path}")
+
         self.qr_data.set("")
 
 if __name__ == "__main__":
