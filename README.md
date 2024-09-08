@@ -1,4 +1,8 @@
 # Python QR Code Generator
+![QR Code Example](images/1.png)
+![QR Code Example](images/2.png)
+![QR Code Example](images/3.png)
+![QR Code Example](images/4.png)
 
 A modern QR code generator application built with Python and Tkinter. This tool allows users to generate QR codes with customizable options, including border size, box size, and colors for both the QR code and background. Users can also choose where to save the generated QR code image.
 
